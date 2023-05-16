@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" style="color: red; font-size: 20px">
+        hello - {{msg}}
+        <h1>
+            h111
+            <span>222</span>
+        </h1>
+        <div>{{a.b}}</div>
+        <h2>{{list}}</h2>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <script>
+        // console.log(Vue)
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    msg: 'hello11',
+                    a: {
+                        b: 10
+                    },
+                    list: [1,2,3],
+                    arr: [{a: 1}]
+                }
+            }
+        })
+        setTimeout(() => {
+            vm.msg = 'hellochange'
+            // vm._update(vm._render())
+
+            // 数组更新
+            vm.list.push(4)
+        }, 2000)
+        console.log(vm)
+       /**
+        * 问题：数据更新不能实现页面的自动更新
+        * 1、数据变化，自动更新视图 vm._update(vm._render())
+        * 2、vue中更新组件的策略：以组件为单位，给每一个组件添加watcher,属性变化后调用watcher
+        * 3、实现对象的依赖收集
+        * 4、dep和watcher的关系：多对多  为了后续的计算属性
+        * 
+        * 数组收集
+        *   1、给所有对象类型增加一个dep
+        *   2、获取数组的值，会调用get方法，让当前数组记住这个渲染watcher
+        *       2.1、需要获取到当前dep
+        *       2.2、数组取值的时候，让数组的dep记住这个watcher
+        *   3、更新数组的时候，调用push等方法，找到watcher进行更新
+        */ 
+    </script>
+</body>
+</html>

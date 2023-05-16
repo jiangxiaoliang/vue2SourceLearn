@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" style="color: red; font-size: 20px">
+        hello - {{msg}} 
+        <h1>
+            h111
+            <span>222</span>
+        </h1>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <script>
+        // console.log(Vue)
+        let vm = new Vue({
+            el: '#app',
+            // data: {},
+            data() {
+                return {
+                    msg: 'hello11',
+                    a: {
+                        b: 10
+                    },
+                    list: [1,2,3],
+                    arr: [{a: 1}]
+                }
+            }
+            // props: {},
+            // methods: {},
+            // computed: {}
+        })
+       /**
+        * vue初次渲染：
+        *   先初始化数据->将模板进行编译->变成render()函数->生成vdom->变成真实dom->放到页面
+        * vue模板编译：
+        *   el(一定要有),render(),template
+        * 
+        */ 
+    </script>
+</body>
+</html>

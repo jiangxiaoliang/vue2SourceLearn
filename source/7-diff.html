@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>你好</div>
+        <span>{{a}}</span>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                a: 1000
+            }
+        })
+
+        /**
+         * 更新数据 vue使用diff算法实现最小量的更新 通过对比vnode
+         * 对比：在进行数据更新的时候，拿到老的和新的节点做对比，将不同的地方进行更新
+         */
+        setTimeout(() => {
+            vm.a = 1
+        }, 3000)
+    </script>
+</body>
+</html>

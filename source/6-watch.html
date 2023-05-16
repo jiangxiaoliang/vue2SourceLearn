@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">{{a}}</div>
+    <script src="./dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                   a: 1,
+                   c: {
+                    c: {
+                        c: 'cccc'
+                    }
+                   }
+                }
+            },
+            methods: {
+                aa() {
+                    console.log('aaa')
+                }
+            },
+            // watch的基本用法
+            // 属性：函数/数组/对象/字符串
+            watch: {
+                a(newValue, oldValue) {
+                    console.log(newValue, oldValue)
+                },
+                // 'c.c.c'(newValue, oldValue) {
+                //     console.log('ccc watcher')
+                //     console.log(newValue, oldValue)
+                // },
+                // a: [
+                //     (newValue, oldValue) => {
+                //         console.log(newValue, oldValue)
+                //     },
+                //     (newValue, oldValue) => {
+                //         console.log(newValue, oldValue)
+                //     }
+                // ]
+                // a: {
+                //     handler(newValue, oldValue) {
+                //         console.log(newValue, oldValue)
+                //     },
+                //     immediate: true
+                // }
+                // a: 'aa'
+            }
+        })
+        setTimeout(() => {
+            vm.a = 100
+        }, 2000)
+    </script>
+</body>
+</html>

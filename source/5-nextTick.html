@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app" style="color: red; font-size: 20px">
+        hello - {{msg}}
+        <h1>
+            h111
+            <span>222</span>
+        </h1>
+        <div>{{a.b}}</div>
+        <h2>{{list}}</h2>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <script>
+        // console.log(Vue)
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    msg: 'hello11',
+                    a: {
+                        b: 10
+                    },
+                    list: [1,2,3],
+                    arr: [{a: 1}]
+                }
+            },
+            created() {
+                console.log('created')
+            },
+            updated() {
+                console.log('updated')
+            }
+        })
+        setTimeout(() => { // nextTick
+            // 注意：数据更新多次，vm._update(vm._render)就调用多次，浪费性能，只需执行一次即可
+            // 批量处理->vue异步数据更新后，不会马上执行
+            vm.msg = 'hellochange'
+            // 数组更新
+            vm.list.push(4)
+            vm.list.push(5)
+            // vm._update(vm._render())
+
+            vm.$nextTick(() => {
+                console.log(vm.$el.innerHTML)
+            })
+        }, 2000)
+    </script>
+</body>
+</html>

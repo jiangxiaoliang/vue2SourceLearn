@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>你好</div>
+        <div>{{fullName}}</div>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: '张',
+                lastName: '三'
+            },
+            computed: {
+                /**
+                 * 具有缓存机制，数据改变时才会重新执行
+                 * 使用方式：1、属性：函数  2、属性：对象
+                 */
+                fullName() {
+                    console.log('执行了')
+                    return this.firstName + this.lastName
+                }
+                // fullName: {
+                //     get() {
+
+                //     },
+                //     set() {
+
+                //     }
+                // }
+            }
+        })
+        // 1.实例获取computed的属性 通过Object.defineProperty
+        console.log(vm.fullName)
+        // 2.具有缓存机制 通过一个变量dirty
+        // vm.fullName
+        setTimeout(() => {
+            vm.firstName = '李'
+            console.log(vm.fullName)
+        }, 1000)
+        /**
+         * 1.computed的使用
+         * 2.初始化computed 实现代理
+         * 3.添加缓存，通过变量dirty watcher
+         *  通过一个高阶函数：高阶函数参数是一个函数或者返回值是一个函数
+         * 
+         * 问题：页面中使用计算属性时，计算属性改变页面数据不会变化
+         *  主要是因为有两个watcher，一个渲染watcher，一个computed watcher
+         */
+    </script>
+</body>
+</html>

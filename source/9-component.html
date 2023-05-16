@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>你好</div>
+        <my-button></my-button>
+    </div>
+    <script src="./dist/vue.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+    <script>
+        Vue.component('my-button', {
+            template: `<button>全局的button</button>`
+        })
+        let vm = new Vue({
+            el: '#app',
+            components: {
+                'my-button': {
+                    template: `<button>内部的button</button>`
+                }
+            },
+            data: {
+                firstName: '张',
+                lastName: '三'
+            }
+        })
+
+        /**
+         * vue组件的使用方式
+         * 1.全局组件 Vue.component
+         * 2.局部组件
+         * 问题：全局组件和局部组件如果是一样的，会渲染局部组件 Vue.options.components
+         * 3.Vue.component的核心是 Vue.extend() 返回一个组件的实例 .$mount()
+         * 4.Vue中组件的关系 父子关系 子组件需要继承父组件中的属性 options 就是类的继承
+         * 5.创建一个子组件就是new子类
+         * 
+         * 
+         * 开发步骤
+         *  1.创建全局组件：定义全局组件映射关系表 Vue.component()
+         *  2.Vue.extend作用 创建子组件 初始化子组件 继承负组件属性
+         *  3.渲染组件->
+         *      渲染标签->获取el->vnode->真实的dom
+         */
+    </script>
+</body>
+</html>
